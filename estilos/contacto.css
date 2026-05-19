@@ -1,0 +1,55 @@
+/* 1. Selector universal */
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. Fondo del Encabezado y Alineación */
+.introduccion {
+    background-color: rgb(102, 0, 0);
+    display: flex;             /* Activa el modo flexible */
+    justify-content: space-between; /* Logo a la izquierda, Menú a la derecha */
+    align-items: center;       /* Centra ambos verticalmente */
+    padding: 10px 50px;        /* Menos padding arriba/abajo, más a los lados */
+    
+}
+
+/* Reducir el tamaño del logo */
+.logo-img {
+    width: 100px; /* Tamaño del logo */
+    height: auto;
+    margin-left: 25px; /* mover a la derecha o izquierda */
+}
+
+/* 3. Ajuste del menú (ul) */
+ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 60px; /* <--- mover menu a la izquierda */
+}
+.introduccion div {
+    margin-right: 50px; /* Prueba con 50px y ve si te gusta la posición */
+}
+
+li {
+    margin-left: 50px;         /* Espacio entre las opciones del menú */
+}
+ul li:last-child {
+    margin-left: 100px;}
+/* Estilo para los textos del menú */
+ul li a {
+    text-decoration: none; /* Quita el subrayado */
+    color: white;          /* Cambia el color a blanco */
+    font-family: Poppins, sans-serif; /* tipografía  */
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s; /* Para que el cambio al pasar el mouse sea suave */
+}
+
+/* Efecto cuando pasas el mouse por encima */
+ul li a:hover {
+    color: #ffcc00;        /* Cambia a dorado al pasar el cursor */
+}
