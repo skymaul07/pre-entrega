@@ -53,3 +53,36 @@ ul li a {
 ul li a:hover {
     color: #ffcc00;        /* Cambia a dorado al pasar el cursor */
 }
+
+/* --- MEDIA QUERIES --- */
+
+/* 1. Para tablets y móviles (hasta 768px) */
+@media (max-width: 768px) {
+    .introduccion {
+        flex-direction: column; /* Apila el logo y el menú */
+        padding: 15px;
+    }
+
+    ul {
+        flex-direction: column; /* Pone los enlaces uno debajo de otro */
+        margin-right: 0;        /* Elimina el margen derecho del escritorio */
+        margin-top: 15px;
+        align-items: center;
+    }
+
+    li {
+        margin: 10px 0;         /* Espaciado vertical entre botones */
+    }
+
+    li:last-child {
+        margin-left: 0;         /* Centra el icono del carrito */
+    }
+}
+
+/* 2. Para pantallas grandes (a partir de 1200px) */
+@media (min-width: 1200px) {
+    .introduccion {
+        padding-left: 150px;    /* Más aire a los lados en pantallas grandes */
+        padding-right: 150px;
+    }
+}
