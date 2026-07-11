@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - Beliza Tarot</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../estilos/servicios.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="../../img/favico.ico">
+    <style>
+        /* Estilos específicos para la grilla de 5 columnas y las tarjetas */
+        .seccion-servicios {
+            max-width: 1400px; 
+            margin: 40px auto; 
+            padding: 0 20px;
+        }
+
+        .titulo-servicios {
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            margin-bottom: 50px; 
+            font-size: 36px; 
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Forzamos una grilla exacta de 5 columnas en pantallas de escritorio */
+        #contenedor-servicios {
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 20px; 
+            padding: 10px;
+        }
+
+        /* Estilización estética de las tarjetas del catálogo */
+        .tarjeta-servicio {
+            background: #ffffff;
+            border: 1px solid #eaeaea; 
+            padding: 15px; 
+            border-radius: 16px; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Efecto Hover interactivo */
+        .tarjeta-servicio:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Adaptabilidad para pantallas más chicas (Tablets y Celulares) */
+        @media (max-width: 1100px) {
+            #contenedor-servicios { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            #contenedor-servicios { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            #contenedor-servicios { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>  
 
 <body>
@@ -26,8 +83,27 @@
                     <li><a href="../Meditaciones/meditaciones.html">Meditaciones</a></li>
                     <li><a href="../Contacto/contacto.html">Contacto</a></li>
                     <li>
-                        <a href="../Carrito/Carrito.html">
-                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        <!-- Contenedor del carrito optimizado para que la burbuja dorada no lo tape -->
+                        <a href="../Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
+                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 20px; color: white;"></i>
+                            <span id="contador-carrito" style="
+                                position: absolute; 
+                                top: -5px; 
+                                right: -12px; 
+                                background-color: #d4af37; 
+                                color: #1a1a1a; 
+                                border: 2px solid #660000; 
+                                border-radius: 50%; 
+                                font-size: 11px; 
+                                font-weight: bold; 
+                                min-width: 18px; 
+                                height: 18px; 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center; 
+                                font-family: 'Poppins', sans-serif;
+                                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                            ">0</span>
                         </a>
                     </li>
                 </ul>
@@ -35,13 +111,16 @@
         </nav>
     </header>
 
-    <main style="max-width: 1200px; margin: 40px auto; padding: 20px;">
-        <h1 style="text-align: center; font-family: 'Poppins', sans-serif; margin-bottom: 40px; font-size: 36px; font-weight: bold;">Nuestros Servicios</h1>
+    <main class="seccion-servicios">
+        <h1 class="titulo-servicios">Nuestros Servicios</h1>
         
-        <div id="contenedor-servicios" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 10px;">
-            </div>
+        <!-- Contenedor optimizado para las 2 filas de 5 productos -->
+        <div id="contenedor-servicios">
+            <!-- Las tarjetas dinámicas se inyectarán acá mediante servicios.js -->
+        </div>
     </main>
 
+    <!-- Script de lógica -->
     <script src="servicios.js"></script>
 </body>
 </html>
