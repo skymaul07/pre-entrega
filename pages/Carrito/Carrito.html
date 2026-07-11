@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Reservas - Beliza Tarot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../estilos/servicios.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../../img/favico.ico">
+</head>
+
+<body>
+    <header>
+        <nav class="introduccion">
+            <a href="../../Index.html">
+                <img src="../../img/Logo Blanco.png" alt="Logo Principal" class="logo-img">
+            </a>
+
+            <div>
+                <ul>
+                    <li><a href="../../Index.html">Inicio</a></li>
+                    <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                    <li><a href="../Cursos/cursos.html">Cursos</a></li>
+                    <li><a href="../Publicaciones/publicaciones.html">Publicaciones</a></li>
+                    <li><a href="../Meditaciones/meditaciones.html">Meditaciones</a></li>
+                    <li><a href="../Contacto/contacto.html">Contacto</a></li>
+                    <li>
+                        <a href="Carrito.html">
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main style="max-width: 1000px; margin: 40px auto; padding: 20px;">
+        <h1 style="font-family: 'Poppins', sans-serif; text-align: center; margin-bottom: 30px;">Tu Carrito de Sesiones</h1>
+
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <thead>
+                <tr style="background-color: #f4f4f4; font-family: 'Poppins', sans-serif;">
+                    <th style="padding: 10px;">Remover</th>
+                    <th style="padding: 10px;">Imagen</th>
+                    <th style="padding: 10px;">Servicio</th>
+                    <th style="padding: 10px;">Precio</th>
+                    <th style="padding: 10px;">Cantidad</th>
+                    <th style="padding: 10px;">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="tabla_carrito">
+                </tbody>
+        </table>
+
+        <div style="text-align: right; font-family: 'Poppins', sans-serif; margin-top: 20px;">
+            <h3>Total: <span id="total_general">$0.00</span></h3>
+            <div style="margin-top: 20px;">
+                <button id="btn-vaciar" style="background-color: #666; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; margin-right: 10px; font-weight: bold;">
+                    Vaciar Carrito
+                </button>
+                <button id="btn-finalizar" style="background-color: #660000; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    Confirmar Reserva
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast-custom" style="position: fixed; bottom: 20px; right: 20px; background: #660000; color: white; padding: 15px 20px; border-radius: 8px; display: none; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 10000;">
+        <span id="toastMensaje"></span>
+        <button id="btnCerrarToast" style="background: none; border: none; color: white; margin-left: 15px; cursor: pointer; font-weight: bold;">✕</button>
+    </div>
+
+    <script src="carrito.js"></script>
+</body>
+</html>

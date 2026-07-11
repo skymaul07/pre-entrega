@@ -1,18 +1,25 @@
-/* 1. Selector universal */
- *{
+/* ==========================================
+   1. SELECTOR UNIVERSAL Y BASE
+   ========================================== */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 2. Fondo del Encabezado y Alineación */
+body {
+    background-color: #fcfcfc; /* Un fondo sutilmente claro para que resalten las tarjetas */
+}
+
+/* ==========================================
+   2. ENCABEZADO Y NAVEGACIÓN (Tu diseño original)
+   ========================================== */
 .introduccion {
     background-color: rgb(102, 0, 0);
     display: flex;             /* Activa el modo flexible */
     justify-content: space-between; /* Logo a la izquierda, Menú a la derecha */
     align-items: center;       /* Centra ambos verticalmente */
     padding: 10px 50px;        /* Menos padding arriba/abajo, más a los lados */
-    
 }
 
 /* Reducir el tamaño del logo */
@@ -22,7 +29,7 @@
     margin-left: 25px; /* mover a la derecha o izquierda */
 }
 
-/* 3. Ajuste del menú (ul) */
+/* Ajuste del menú (ul) */
 ul {
     display: flex;
     list-style: none;
@@ -30,6 +37,7 @@ ul {
     padding: 0;
     margin-right: 60px; /* <--- mover menu a la izquierda */
 }
+
 .introduccion div {
     margin-right: 50px; /* Prueba con 50px y ve si te gusta la posición */
 }
@@ -37,13 +45,16 @@ ul {
 li {
     margin-left: 50px;         /* Espacio entre las opciones del menú */
 }
+
 ul li:last-child {
-    margin-left: 100px;}
+    margin-left: 100px;
+}
+
 /* Estilo para los textos del menú */
 ul li a {
     text-decoration: none; /* Quita el subrayado */
     color: white;          /* Cambia el color a blanco */
-    font-family: Poppins, sans-serif; /* tipografía  */
+    font-family: 'Poppins', sans-serif; /* tipografía  */
     font-weight: bold;
     font-size: 16px;
     transition: color 0.3s; /* Para que el cambio al pasar el mouse sea suave */
@@ -52,4 +63,109 @@ ul li a {
 /* Efecto cuando pasas el mouse por encima */
 ul li a:hover {
     color: #ffcc00;        /* Cambia a dorado al pasar el cursor */
+}
+
+
+/* ==========================================
+   3. SECCIÓN DE SERVICIOS (Distribución en 5 Columnas)
+   ========================================== */
+
+/* Contenedor principal que inyecta JS */
+.servicios-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Genera exactamente 5 columnas iguales */
+    gap: 25px; /* Espacio exacto entre las tarjetas */
+    padding: 40px 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Tarjeta individual de cada servicio */
+.servicio-card {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; /* Centra los textos y el botón abajo de la foto */
+    text-align: center;
+}
+
+/* Ajuste de las fotos de los servicios (Esquinas bien redondeadas) */
+.servicio-img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Hace que todas tus fotos sean perfectamente cuadradas */
+    object-fit: cover;
+    border-radius: 22px; /* Redondeado pronunciado igual al de tu captura */
+    margin-bottom: 12px;
+}
+
+/* Contenedor de la información interna */
+.servicio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 5px;
+}
+
+/* Ocultamos las categorías y descripciones largas para copiar tu modelo limpio */
+.servicio-categoria,
+.servicio-descripcion {
+    display: none; 
+}
+
+/* Título de los servicios */
+.servicio-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: #444444; /* Gris oscuro para una lectura limpia */
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Precio en gris claro */
+.servicio-precio {
+    font-size: 15px;
+    font-weight: 700;
+    color: #b5b5b5; /* Gris claro idéntico a tu ejemplo */
+    margin: 4px 0 12px 0;
+}
+
+/* Botón Añadir al carrito (Gris / Lila claro) */
+.btn-reservar {
+    background-color: #eae6f0; /* Color exacto de los botones de tu captura */
+    color: #555555;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    width: fit-content;
+}
+
+.btn-reservar:hover {
+    background-color: #dcd6e7; /* Oscurece un poquito al pasar el mouse */
+}
+
+.btn-reservar:active {
+    transform: scale(0.97); /* Efecto sutil de clic clickeable */
+}
+
+
+/* ==========================================
+   4. DISEÑO RESPONSIVO (Para celulares y tablets)
+   ========================================== */
+@media (max-width: 1100px) {
+    .servicios-container {
+        grid-template-columns: repeat(2, 1fr); /* Se adapta a 2 columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 650px) {
+    .servicios-container {
+        grid-template-columns: 1fr; /* 1 sola columna en celulares */
+        padding: 20px;
+    }
 }
