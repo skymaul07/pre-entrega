@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto | Beliza Castillo</title>
-    <!-- Fuentes de Google -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Vinculación al CSS general desde la subcarpeta -->
-    <link rel="stylesheet" href="../../estilos/style.css">
+    <link rel="stylesheet" href="../../estilos/style.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="../../favico.ico">
     
     <style>
         .contacto-seccion {
             padding: 80px 20px;
             font-family: 'Poppins', sans-serif;
             background-color: #fcfcfc;
-            min-height: 85vh;
+            min-height: 75vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -90,14 +91,36 @@
 </head>
 <body>
 
+    <header style="position: sticky; top: 0; z-index: 10000;">
+        <nav class="introduccion">
+            <a href="../../Index.html">
+                <img src="../../img/Logo%20Blanco.png" alt="Logo Principal" class="logo-img">
+            </a>
+            <div>
+                <ul>
+                    <li><a href="../../Index.html">Inicio</a></li>
+                    <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                    <li><a href="../Cursos/cursos.html">Cursos</a></li>
+                    <li><a href="../Publicaciones/publicaciones.html">Publicaciones</a></li>
+                    <li><a href="../Meditaciones/meditaciones.html">Meditaciones</a></li>
+                    <li><a href="contacto.html" class="active">Contacto</a></li>
+                    <li>
+                        <a href="../Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
+                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 18px; color: white;"></i>
+                            <span id="contador-carrito" style="position: absolute; top: -5px; right: -8px; background-color: #d4af37; color: #1a1a1a; border: 2px solid rgb(102, 0, 0); border-radius: 50%; font-size: 11px; font-weight: bold; min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     <section class="contacto-seccion">
         <div class="formulario-contenedor">
             <h2>Enviame tu consulta</h2>
             <hr class="linea-formulario">
             
-            <!-- Formulario conectado a tu ID de Formspree -->
             <form action="https://formspree.io/f/xpqvzwog" method="POST">
-                
                 <div class="grupo-campo">
                     <label for="nombre">Nombre Completo</label>
                     <input type="text" id="nombre" name="name" required placeholder="Escribí tu nombre">
@@ -118,5 +141,36 @@
         </div>
     </section>
 
+    <footer class="footer-sitio">
+        <div class="footer-contenido">
+            <div class="footer-logo-bloque">
+                <img src="../../img/Logo%20Blanco.png" alt="Logo Beliza" class="footer-logo">
+                <p>Acompañamiento holístico y sistémico para tu evolución.</p>
+            </div>
+            
+            <div class="footer-redes-bloque">
+                <h4>Conectemos</h4>
+                <div class="redes-iconos">
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/tu-numero-aqui" target="_blank" aria-label="WhatsApp" class="wp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Beliza Castillo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contador = document.getElementById('contador-carrito');
+            if (contador) {
+                const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+                contador.textContent = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+            }
+        });
+    </script>
 </body>
 </html>
