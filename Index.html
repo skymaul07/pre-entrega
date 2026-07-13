@@ -3,45 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Beliza Tarot</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../estilos/servicios.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="../../img/favico.ico">
-</head>
+    <title>Beliza Castillo | Tarot y Coaching</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="estilos/style.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favico.ico">
+</head>
 <body>
-    <header>
+
+    <header style="position: sticky; top: 0; z-index: 10000;">
         <nav class="introduccion">
-            <a href="../../Index.html" class="logo-link">
-                <img src="../../img/Logo Blanco.png" alt="Logo Principal" class="logo-img">
+            <a href="Index.html">
+                <img src="img/Logo%20Blanco.png" alt="Logo Principal" class="logo-img">
             </a>
             <div>
                 <ul>
-                  <li><a href="Index.html">Inicio</a></li>
-            <li><a href="./pages/Servicios/servicios.html">Servicios</a></li>
-            <li><a href="./pages/Cursos/cursos.html">Cursos</a></li>
-            <li><a href="./pages/Publicaciones/publicaciones.html">Publicaciones</a></li>
-            <li><a href="./pages/Meditaciones/meditaciones.html">Meditaciones</a></li>
-            <li><a href="./pages/Contacto/contacto.html">Contacto</a></li>
-            <li>
-                <a href="./pages/carrito.html">
-                    <i class="fa-solid fa-cart-arrow-down"></i>
+                    <li><a href="Index.html" class="active">Inicio</a></li>
+                    <li><a href="pages/Servicios/servicios.html">Servicios</a></li>
+                    <li><a href="pages/Cursos/cursos.html">Cursos</a></li>
+                    <li><a href="pages/Publicaciones/publicaciones.html">Publicaciones</a></li>
+                    <li><a href="pages/Meditaciones/meditaciones.html">Meditaciones</a></li>
+                    <li><a href="pages/Contacto/contacto.html">Contacto</a></li>
+                    <li>
+                        <a href="pages/Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
+                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 18px; color: white;"></i>
+                            <span id="contador-carrito" style="position: absolute; top: -5px; right: -8px; background-color: #d4af37; color: #1a1a1a; border: 2px solid rgb(102, 0, 0); border-radius: 50%; font-size: 11px; font-weight: bold; min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">0</span>
                         </a>
                     </li>
                 </ul>
             </div>
-        </nav>          
+        </nav>
     </header>
 
-    <main>
-        <h2 style="text-align: center; margin-top: 40px; font-family: 'Poppins', sans-serif; color: #333;">
-            En Construcción: Próximamente podrás explorar nuestros servicios y descubrir cómo podemos ayudarte a alcanzar tus metas espirituales y personales.
-        </h2>
-        
-        <div class="servicios-container"></div>
-    </main>  
+    <section class="hero-parallax" style="justify-content: flex-start; padding-left: 7%;">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="text-align: left; max-width: 550px; margin-left: 0; margin-right: auto;">
+            <h1 style="font-size: 55px; font-weight: 700; text-shadow: 0 3px 10px rgba(0,0,0,0.6); margin-top: 0px; margin-bottom: 5px;">Beliza Castillo</h1>
+            <p style="font-size: 24px; font-weight: 400; letter-spacing: 2px; text-shadow: 0 2px 8px rgba(0,0,0,0.6); margin-top: 0px; margin-bottom: 35px;">Tarot y Coaching</p>
+            <a href="pages/Servicios/servicios.html" class="btn-principal">Ver Servicios Interactivos</a>
+        </div>
+    </section>
 
-    <script src="servicios.js"></script>
+    <main class="contenido-principal">
+        <div class="presentacion-container">
+            <div class="presentacion-texto">
+                <h2>Bienvenidos a mi espacio evolutivo</h2>
+                <hr class="linea-decorativa">
+                <p>Hola, soy <strong>Beliza Castillo</strong>. A través del Tarot, las Constelaciones Familiares y el Coaching, te acompaño a destrabar bloqueos sistémicos, comprender tus procesos energéticos y tomar decisiones conscientes alineadas con tu verdadero propósito.</p>
+                <p>Dejé atrás las limitations de las plataformas rígidas para construir este espacio a medida para vos, donde vas a poder explorar lecturas dinámicas, limpiezas energéticas y herramientas de transformación de manera directa, fluida y transparente.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="banner-parallax">
+        <a href="pages/Contacto/contacto.html" class="enlace-reserva-invisible" title="Reservar Sesión"></a>
+    </section>
+
+    <section class="seccion-valores">
+        <div class="valores-container">
+            
+            <div class="valor-card">
+                <div class="valor-icono"><i class="fa-solid fa-earth-americas"></i></div>
+                <h3>Consultas desde cualquier parte del mundo</h3>
+                <p>Atención online personalizada en tarot coaching y limpiezas energéticas para personas de cualquier país.</p>
+            </div>
+
+            <div class="valor-card">
+                <div class="valor-icono"><i class="fa-regular fa-hourglass-half"></i></div>
+                <h3>Experiencia</h3>
+                <p>Formación profesional con más de 18 años de experiencia acompañando procesos de transformación emocional.</p>
+            </div>
+
+            <div class="valor-card">
+                <div class="valor-icono"><i class="fa-solid fa-puzzle-piece"></i></div>
+                <h3>Combinación de Recursos</h3>
+                <p>Manejo de distintas técnicas terapéuticas y holísticas que permiten una atención integral y profunda.</p>
+            </div>
+
+            <div class="valor-card">
+                <div class="valor-icono"><i class="fa-solid fa-lock"></i></div>
+                <h3>Pagos Seguros</h3>
+                <p>Tus pagos se realizan a través de plataformas seguras y confiables, garantizando la protección de tus datos y una experiencia transparente en todo momento.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer-sitio">
+        <div class="footer-contenido">
+            <div class="footer-logo-bloque">
+                <img src="img/Logo%20Blanco.png" alt="Logo Beliza" class="footer-logo">
+                <p>Acompañamiento holístico y sistémico para tu evolución.</p>
+            </div>
+            
+            <div class="footer-redes-bloque">
+                <h4>Conectemos</h4>
+                <div class="redes-iconos">
+                    <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://wa.me/tu-numero-aqui" target="_blank" aria-label="WhatsApp" class="wp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Beliza Castillo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contador = document.getElementById('contador-carrito');
+            if (contador) {
+                const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+                contador.textContent = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+            }
+        });
+    </script>
 </body>
 </html>

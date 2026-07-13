@@ -1,88 +1,385 @@
-/* 1. Selector universal */
- *{
+/* ==========================================================================
+   1. Selector universal
+   ========================================================================== */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 2. Fondo del Encabezado y Alineación */
+/* 2. Encabezado */
 .introduccion {
     background-color: rgb(102, 0, 0);
-    display: flex;             /* Activa el modo flexible */
-    justify-content: space-between; /* Logo a la izquierda, Menú a la derecha */
-    align-items: center;       /* Centra ambos verticalmente */
-    padding: 10px 50px;        /* Menos padding arriba/abajo, más a los lados */
-    
+    display: flex;             
+    justify-content: space-between; 
+    align-items: center;       
+    padding: 10px 50px;        
 }
 
-/* Reducir el tamaño del logo */
 .logo-img {
-    width: 100px; /* Tamaño del logo */
+    width: 100px; 
     height: auto;
-    margin-left: 25px; /* mover a la derecha o izquierda */
+    margin-left: 25px; 
 }
 
-/* 3. Ajuste del menú (ul) */
+/* 3. Menú (ul) */
 ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-right: 60px; /* <--- mover menu a la izquierda */
+    margin-right: 60px; 
 }
 .introduccion div {
-    margin-right: 50px; /* Prueba con 50px y ve si te gusta la posición */
+    margin-right: 50px; 
 }
 
 li {
-    margin-left: 50px;         /* Espacio entre las opciones del menú */
+    margin-left: 50px;         
 }
 ul li:last-child {
-    margin-left: 100px;}
-/* Estilo para los textos del menú */
+    margin-left: 100px;
+}
 ul li a {
-    text-decoration: none; /* Quita el subrayado */
-    color: white;          /* Cambia el color a blanco */
-    font-family: Poppins, sans-serif; /* tipografía  */
+    text-decoration: none; 
+    color: white;          
+    font-family: Poppins, sans-serif; 
     font-weight: bold;
     font-size: 16px;
-    transition: color 0.3s; /* Para que el cambio al pasar el mouse sea suave */
+    transition: color 0.3s; 
 }
 
-/* Efecto cuando pasas el mouse por encima */
 ul li a:hover {
-    color: #ffcc00;        /* Cambia a dorado al pasar el cursor */
+    color: #ffcc00;        
 }
 
-/* --- MEDIA QUERIES --- */
+/* ==========================================================================
+   PRIMER PARALLAX - FOTO DE PORTADA ORIGINAL (CABEZA CORREGIDA)
+   ========================================================================== */
+.hero-parallax {
+    position: relative;
+    height: 75vh; 
+    background-image: url('https://info.belizacastillo.com/wp-content/uploads/2026/01/Copia-de-3.jpg'); 
+    background-attachment: fixed; 
+    background-position: center top; 
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-/* 1. Para tablets y móviles (hasta 768px) */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 0, 0, 0.55); 
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 0 20px;
+    max-width: 800px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero-content h1 {
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+.hero-content p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.btn-principal {
+    display: inline-block;
+    background-color: #d4af37;
+    color: #1a1a1a;
+    padding: 12px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-principal:hover {
+    background-color: #f1c40f;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* ==========================================================================
+   SECCIÓN DE PRESENTACIÓN
+   ========================================================================== */
+.contenido-principal {
+    background-color: #fcfcfc;
+    position: relative;
+    z-index: 3; 
+    padding: 60px 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.presentacion-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.presentacion-texto h2 {
+    color: #660000;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 0;
+    font-weight: 700;
+}
+
+.linea-decorativa {
+    width: 60px;
+    height: 3px;
+    background-color: #d4af37;
+    border: none;
+    margin: 15px auto 35px auto;
+}
+
+.presentacion-texto p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   SEGUNDO PARALLAX - BANNER RESERVAS (CORREGIDO: IMAGEN MÁS BAJA)
+   ========================================================================== */
+.banner-parallax {
+    position: relative;
+    height: 320px; 
+    background-image: url('https://info.belizacastillo.com/wp-content/uploads/2026/01/7_20260127_222214_0006.jpg-scaled.jpeg');
+    background-attachment: fixed;
+    background-position: center 20%; /* Ajustado al 20% para empujar la foto hacia abajo y encuadrar perfecto */
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.enlace-reserva-invisible {
+    position: absolute;
+    left: 8.2%; 
+    width: 140px; 
+    height: 50px; 
+    display: inline-block;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0); 
+    transition: background-color 0.3s ease;
+}
+
+.enlace-reserva-invisible:hover {
+    background-color: rgba(255, 255, 255, 0.15); 
+}
+
+/* ==========================================================================
+   ESTILOS SECCIÓN VALORES Y BENEFICIOS
+   ========================================================================== */
+.seccion-valores {
+    background-color: #ffffff;
+    padding: 80px 40px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 3;
+}
+
+.valores-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+}
+
+.valor-card {
+    text-align: center;
+    padding: 10px;
+}
+
+.valor-icono {
+    font-size: 38px;
+    color: #1a1a1a; 
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.valor-card h3 {
+    font-size: 18px;
+    color: #1a1a1a;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.valor-card p {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+    padding: 0 10px;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA PROFESIONAL (FOOTER)
+   ========================================================================== */
+.footer-sitio {
+    background-color: #1a1a1a; 
+    color: #ffffff;
+    padding: 60px 40px 20px 40px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 3;
+}
+
+.footer-contenido {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 40px;
+}
+
+.footer-logo-bloque {
+    max-width: 400px;
+}
+
+.footer-logo {
+    width: 90px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.footer-logo-bloque p {
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.footer-redes-bloque h4 {
+    font-size: 16px;
+    color: #d4af37; 
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.redes-iconos {
+    display: flex;
+    gap: 20px;
+}
+
+.redes-iconos a {
+    color: #ffffff;
+    font-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.redes-iconos a:hover {
+    color: #d4af37;
+    transform: translateY(-3px);
+}
+
+.redes-iconos a.wp-icon:hover {
+    color: #25d366; 
+}
+
+.footer-copyright {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 13px;
+    color: #666666;
+}
+
+/* ==========================================================================
+   RESPONSIVE - MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 992px) {
+    .valores-container {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
 @media (max-width: 768px) {
     .introduccion {
-        flex-direction: column; /* Apila el logo y el menú */
+        flex-direction: column; 
         padding: 15px;
     }
 
     ul {
-        flex-direction: column; /* Pone los enlaces uno debajo de otro */
-        margin-right: 0;        /* Elimina el margen derecho del escritorio */
+        flex-direction: column; 
+        margin-right: 0;        
         margin-top: 15px;
         align-items: center;
     }
 
     li {
-        margin: 10px 0;         /* Espaciado vertical entre botones */
+        margin: 10px 0;         
     }
 
     li:last-child {
-        margin-left: 0;         /* Centra el icono del carrito */
+        margin-left: 0;         
     }
+
+    .hero-parallax {
+        background-attachment: scroll; 
+        height: 60vh;
+    }
+    
+    .banner-parallax {
+        background-attachment: scroll;
+        height: 200px;
+    }
+    
+    .enlace-reserva-invisible {
+        left: 5%;
+        width: 110px;
+        height: 40px;
+    }
+
+    .valores-container {
+        grid-template-columns: 1fr; 
+        gap: 40px;
+    }
+
+    .footer-contenido {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-content h1 { font-size: 32px; }
+    .hero-content p { font-size: 15px; }
 }
 
-/* 2. Para pantallas grandes (a partir de 1200px) */
 @media (min-width: 1200px) {
     .introduccion {
-        padding-left: 150px;    /* Más aire a los lados en pantallas grandes */
+        padding-left: 150px;    
         padding-right: 150px;
     }
 }
