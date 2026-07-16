@@ -1,55 +1,129 @@
-/* 1. Selector universal */
- *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==========================================
+   ESTILOS ESPECÍFICOS PARA MEDITACIONES
+   ========================================== */
+
+.meditation-section {
+    background-color: #fcfcfc; /* Fondo claro */
+    color: #1a1a1a;
+    padding: 80px 20px;
+    font-family: 'Poppins', sans-serif;
+    min-height: 75vh;
 }
 
-/* 2. Fondo del Encabezado y Alineación */
-.introduccion {
-    background-color: rgb(102, 0, 0);
-    display: flex;             /* Activa el modo flexible */
-    justify-content: space-between; /* Logo a la izquierda, Menú a la derecha */
-    align-items: center;       /* Centra ambos verticalmente */
-    padding: 10px 50px;        /* Menos padding arriba/abajo, más a los lados */
-    
+.meditation-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Reducir el tamaño del logo */
-.logo-img {
-    width: 100px; /* Tamaño del logo */
-    height: auto;
-    margin-left: 25px; /* mover a la derecha o izquierda */
+/* Introducción y textos */
+.meditation-intro {
+    text-align: center;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* 3. Ajuste del menú (ul) */
-ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    margin-right: 60px; /* <--- mover menu a la izquierda */
-}
-.introduccion div {
-    margin-right: 50px; /* Prueba con 50px y ve si te gusta la posición */
+.meditation-intro h2 {
+    color: #660000; /* Rojo borravino */
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-li {
-    margin-left: 50px;         /* Espacio entre las opciones del menú */
+.linea-decorativa {
+    width: 60px;
+    height: 3px;
+    background-color: #d4af37; /* Dorado */
+    border: none;
+    margin: 0 auto 30px auto;
 }
-ul li:last-child {
-    margin-left: 100px;}
-/* Estilo para los textos del menú */
-ul li a {
-    text-decoration: none; /* Quita el subrayado */
-    color: white;          /* Cambia el color a blanco */
-    font-family: Poppins, sans-serif; /* tipografía  */
-    font-weight: bold;
+
+.intro-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.invitation-text {
     font-size: 16px;
-    transition: color 0.3s; /* Para que el cambio al pasar el mouse sea suave */
+    line-height: 1.6;
+    color: #666;
+    font-style: italic;
 }
 
-/* Efecto cuando pasas el mouse por encima */
-ul li a:hover {
-    color: #ffcc00;        /* Cambia a dorado al pasar el cursor */
+/* Grilla de videos uniforme */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+    gap: 30px;
+}
+
+.video-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Fuerza a que todas midan exactamente lo mismo de alto */
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: #d4af37;
+}
+
+/* Contenedor responsivo para videos de YouTube (proporción 16:9 fija) */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Título del video con altura flexible pero alineación consistente */
+.video-card h3 {
+    font-size: 14px;
+    padding: 15px;
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1a1a1a;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px; /* Asegura consistencia si un título es más largo que otro */
+}
+
+/* Diseño adaptable para tablets (2 columnas de igual tamaño) */
+@media (max-width: 991px) {
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Diseño adaptable para celulares (1 columna) */
+@media (max-width: 767px) {
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+    .meditation-intro h2 {
+        font-size: 28px;
+    }
 }
