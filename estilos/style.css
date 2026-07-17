@@ -167,34 +167,21 @@ ul li a:hover {
 }
 
 /* ==========================================================================
-   SEGUNDO PARALLAX - BANNER RESERVAS (CORREGIDO: IMAGEN MÁS BAJA)
+   SEGUNDO PARALLAX - BANNER RESERVAS (CORREGIDO)
    ========================================================================== */
 .banner-parallax {
     position: relative;
     height: 320px; 
     background-image: url('https://info.belizacastillo.com/wp-content/uploads/2026/01/7_20260127_222214_0006.jpg-scaled.jpeg');
     background-attachment: fixed;
-    background-position: center 20%; /* Ajustado al 20% para empujar la foto hacia abajo y encuadrar perfecto */
+    /* Aumenté el valor a 70% para que la imagen baje más. 
+       Si aún querés que se vea más baja, probá con 80% o 90%. */
+    background-position: center -60%; 
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     z-index: 3;
-}
-
-.enlace-reserva-invisible {
-    position: absolute;
-    left: 8.2%; 
-    width: 140px; 
-    height: 50px; 
-    display: inline-block;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0); 
-    transition: background-color 0.3s ease;
-}
-
-.enlace-reserva-invisible:hover {
-    background-color: rgba(255, 255, 255, 0.15); 
 }
 
 /* ==========================================================================

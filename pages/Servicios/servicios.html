@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../../estilos/style.css">
-    
     <link rel="stylesheet" href="../../estilos/servicios.css">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -72,44 +71,48 @@
 </head>  
 
 <body>
-    <header>
-        <nav class="introduccion">
-            <a href="../../Index.html">
-                <img src="../../img/Logo Blanco.png" alt="Logo Principal" class="logo-img">
+    <header style="position: sticky; top: 0; z-index: 10000;">
+        <nav class="introduccion" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 5%; position: relative; min-height: 80px;">
+            
+            <!-- Logo a la izquierda -->
+            <a href="../../Index.html" style="display: flex; align-items: center; z-index: 2;">
+                <img src="../../img/Logo%20Blanco.png" alt="Logo Principal" class="logo-img">
             </a>
 
-            <div>
-                <ul>
-                    <li><a href="../../Index.html">Inicio</a></li>
-                    <li><a href="servicios.html" class="active">Servicios</a></li>
-                    <li><a href="../Cursos/cursos.html">Cursos</a></li>
-                    <li><a href="../Publicaciones/publicaciones.html">Publicaciones</a></li>
-                    <li><a href="../Meditaciones/meditaciones.html">Meditaciones</a></li>
-                    <li><a href="../Contacto/contacto.html">Contacto</a></li>
-                    <li>
-                        <a href="../Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
-                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 20px; color: white;"></i>
-                            <span id="contador-carrito" style="
-                                position: absolute; 
-                                top: -5px; 
-                                right: -12px; 
-                                background-color: #d4af37; 
-                                color: #1a1a1a; 
-                                border: 2px solid #660000; 
-                                border-radius: 50%; 
-                                font-size: 11px; 
-                                font-weight: bold; 
-                                min-width: 18px; 
-                                height: 18px; 
-                                display: flex; 
-                                align-items: center; 
-                                justify-content: center; 
-                                font-family: 'Poppins', sans-serif;
-                                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                            ">0</span>
-                        </a>
-                    </li>
+            <!-- ENLACES TOTALMENTE CENTRADOS CON EL MISMO ESPACIADO ELEGANTE DEL INICIO -->
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; width: auto; max-width: 60%;">
+                <ul style="display: flex !important; list-style: none !important; margin: 0 !important; padding: 0 !important; align-items: center !important; justify-content: center !important; gap: 0 !important;">
+                    <li style="margin: 0 30px !important; padding: 0 !important; display: inline-block !important;"><a href="../../Index.html" style="font-family: 'Poppins', sans-serif;">Inicio</a></li>
+                    <li style="margin: 0 30px !important; padding: 0 !important; display: inline-block !important;"><a href="servicios.html" class="active" style="font-family: 'Poppins', sans-serif;">Servicios</a></li>
+                    <li style="margin: 0 30px !important; padding: 0 !important; display: inline-block !important;"><a href="../Publicaciones/publicaciones.html" style="font-family: 'Poppins', sans-serif;">Publicaciones</a></li>
+                    <li style="margin: 0 30px !important; padding: 0 !important; display: inline-block !important;"><a href="../Meditaciones/meditaciones.html" style="font-family: 'Poppins', sans-serif;">Meditaciones</a></li>
+                    <li style="margin: 0 30px !important; padding: 0 !important; display: inline-block !important;"><a href="../Contacto/contacto.html" style="font-family: 'Poppins', sans-serif;">Contacto</a></li>
                 </ul>
+            </div>
+
+            <!-- Carrito a la derecha con el contador -->
+            <div style="display: flex; align-items: center; justify-content: flex-end; z-index: 2;">
+                <a href="../Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
+                    <i class="fa-solid fa-cart-arrow-down" style="font-size: 20px; color: white;"></i>
+                    <span id="contador-carrito" style="
+                        position: absolute; 
+                        top: -5px; 
+                        right: -12px; 
+                        background-color: #d4af37; 
+                        color: #1a1a1a; 
+                        border: 2px solid #660000; 
+                        border-radius: 50%; 
+                        font-size: 11px; 
+                        font-weight: bold; 
+                        min-width: 18px; 
+                        height: 18px; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        font-family: 'Poppins', sans-serif;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    ">0</span>
+                </a>
             </div>
         </nav>
     </header>
