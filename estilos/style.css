@@ -53,6 +53,11 @@ ul li a:hover {
     color: #ffcc00;        
 }
 
+/* Ocultar elementos de la hamburguesa por defecto en PC */
+.menu-hamburguesa-btn, #menu-hamburguesa-check {
+    display: none;
+}
+
 /* ==========================================================================
    PRIMER PARALLAX - FOTO DE PORTADA ORIGINAL (CABEZA CORREGIDA)
    ========================================================================== */
@@ -174,8 +179,6 @@ ul li a:hover {
     height: 320px; 
     background-image: url('https://info.belizacastillo.com/wp-content/uploads/2026/01/7_20260127_222214_0006.jpg-scaled.jpeg');
     background-attachment: fixed;
-    /* Aumenté el valor a 70% para que la imagen baje más. 
-       Si aún querés que se vea más baja, probá con 80% o 90%. */
     background-position: center -60%; 
     background-repeat: no-repeat;
     background-size: cover;
@@ -313,26 +316,134 @@ ul li a:hover {
 }
 
 @media (max-width: 768px) {
+    /* --- CORRECCIÓN INTEGRAL DEL MENÚ EN CELULARES --- */
     .introduccion {
-        flex-direction: column; 
-        padding: 15px;
+        flex-direction: row !important; /* Mantiene logo, hamburguesa y carrito en una línea */
+        padding: 10px 20px !important;
+        justify-content: space-between !important;
+        position: relative;
     }
 
+    .logo-img {
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Activamos el botón de la hamburguesa en mobile */
+    .menu-hamburguesa-btn {
+        display: block !important;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1005;
+        order: 2; /* Lo acomoda en el centro/derecha */
+    }
+
+    /* Ocultamos y convertimos el ul en desplegable vertical */
     ul {
-        flex-direction: column; 
-        margin-right: 0;        
-        margin-top: 15px;
-        align-items: center;
+        display: block !important; /* Cambia de flex a bloque vertical */
+        position: absolute !important;
+        top: 100% !important; /* Despliega justo debajo de la barra roja */
+        left: 0 !important;
+        width: 100% !important;
+        background-color: rgba(102, 0, 0, 0.98) !important;
+        margin-right: 0 !important;        
+        margin-top: 0 !important;
+        max-height: 0 !important; /* Escondido por defecto */
+        overflow: hidden !important; /* Evita que las letras se escapen */
+        transition: max-height 0.3s ease-in-out !important;
+        z-index: 1000 !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     li {
-        margin: 10px 0;         
+        margin-left: 0 !important; /* Resetea el espaciado horizontal de PC */
+        text-align: center !important;
+    }
+    
+    ul li:last-child {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
     }
 
-    li:last-child {
-        margin-left: 0;         
+    ul li a {
+        display: block !important;
+        padding: 15px 0 !important;
+        font-size: 18px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
+    /* TRUCO MÁGICO: Cuando se toca la hamburguesa, despliega el menú vertical sin pisar nada */
+    #menu-hamburguesa-check:checked ~ ul {
+        max-height: 300px !important; 
+    }
+
+    /* Evitamos que los divs del header estorben */
+    .introduccion div {
+        margin-right: 0 !important;
+        order: 3; /* Envía el carrito al extremo derecho */
+    }
+
+    /* --- COMPORTAMIENTO ADAPTABLE DEL CARRITO DE COMPRAS --- */
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+        width: 100% !important;
+    }
+    
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    table tr {
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    
+    table td { 
+        border: none !important;
+        position: relative;
+        padding: 8px 0 !important;
+        text-align: center;
+    }
+
+    table td img {
+        margin: 0 auto;
+        display: block;
+        max-width: 90px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    table td input[type="number"] {
+        margin: 5px auto !important;
+        display: block;
+        text-align: center;
+        padding: 6px;
+    }
+
+    /* --- CONTENEDORES GLOBALES DEL CARRITO --- */
+    .cart-collaterals, .contenedor-totales {
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 10px !important;
+    }
+
+    .btn-checkout, .checkout-button, .boton-carrito-accion {
+        width: 100% !important;
+        display: block !important;
+        text-align: center;
+        margin: 10px 0 !important;
+        padding: 14px !important;
+        font-size: 16px !important;
+    }
+
+    /* --- SECCIONES PARALLAX --- */
     .hero-parallax {
         background-attachment: scroll; 
         height: 60vh;
@@ -360,8 +471,17 @@ ul li a:hover {
         gap: 30px;
     }
 
-    .hero-content h1 { font-size: 32px; }
-    .hero-content p { font-size: 15px; }
+    /* AJUSTE EXCLUSIVO DE TEXTOS PARA EL HERO (SOLO EN MOBILE) */
+    .hero-content h1 { 
+        font-size: 24px !important; 
+        line-height: 1.2 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .hero-content p { 
+        font-size: 12px !important; 
+        margin-bottom: 20px !important;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -370,6 +490,7 @@ ul li a:hover {
         padding-right: 150px;
     }
 }
+
 /* Estilos para las redes del footer */
 .redes-iconos a {
     color: white;
@@ -378,7 +499,7 @@ ul li a:hover {
     transition: color 0.3s;
 }
 .redes-iconos a:hover {
-    color: #d4af37; /* El dorado de tu marca */
+    color: #d4af37; 
 }
 
 /* Botón flotante de WhatsApp */

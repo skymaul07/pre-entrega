@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tablaCarrito.innerHTML = `
                 <tr>
                     <td colspan="6" style="padding: 40px; color: #777; font-size: 16px;">
-                        🔮 Tu carrito está vacío. ¡Visita la sección de Servicios para añadir uno!
+                         Tu carrito está vacío. ¡Visita la sección de Servicios para añadir uno!
                     </td>
                 </tr>
             `;

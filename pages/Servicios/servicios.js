@@ -17,7 +17,7 @@ async function inicializarTienda() {
         // Inyectamos las tarjetas dinámicas con clases limpias controladas por el CSS del HTML
         servicios.forEach(producto => {
             contenedor.innerHTML += `
-                <div class="tarjeta-servicio">
+                <div class="tarjeta-servicio" style="position: relative; padding-bottom: 25px;">
                     <img src="${producto.image}" 
                          alt="${producto.title}" 
                          class="img-disparador"
@@ -27,7 +27,7 @@ async function inicializarTienda() {
                     <h3 style="margin: 10px 0; font-size: 15px; font-weight: 600; color: #333; min-height: 45px; display: flex; align-items: center; justify-content: center;">${producto.title}</h3>
                     <p style="color: #666; font-size: 13px; height: 40px; overflow: hidden; margin-bottom: 12px; line-height: 1.4;">${producto.description}</p>
                     <p style="font-weight: bold; color: #660000; font-size: 16px; margin-bottom: 12px;">$${producto.price.toLocaleString('es-AR')}</p>
-                    <button class="btn-agregar" data-id="${producto.id}" style="background-color: #660000; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 14px;">
+                    <button class="btn-agregar" data-id="${producto.id}" style="background-color: #660000; color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; font-size: 14px; transition: all 0.3s ease;">
                         Añadir al Carrito
                     </button>
                 </div>
@@ -106,7 +106,7 @@ function ocultarModal() {
     document.getElementById('custom-modal').style.display = 'none';
 }
 
-// --- LÓGICA DE AGREGAR PRODUCTOS AL CARRITO ---
+// --- LÓGICA DE AGREGAR PRODUCTOS AL CARRITO (MEJORADA CON EFECTOS) ---
 function configurarBotonesAgregar(servicios) {
     document.querySelectorAll('.btn-agregar').forEach(boton => {
         boton.addEventListener('click', () => {
@@ -132,6 +132,59 @@ function configurarBotonesAgregar(servicios) {
                     mostrarToast(`✨ ${productoSeleccionado.title} añadido al carrito.`);
                 } else {
                     console.log(`Añadido: ${productoSeleccionado.title}`);
+                }
+
+                // ========================================================
+                // EFECTO VISUAL: CAMBIAR EL BOTÓN TEMPORALMENTE
+                // ========================================================
+                const textoOriginal = boton.innerHTML;
+                boton.innerHTML = "¡Añadido! 🔮";
+                boton.style.backgroundColor = "#4a0000"; // Cambia sutilmente a un tono más oscuro de tu marca
+                boton.disabled = true;
+
+                setTimeout(() => {
+                    boton.innerHTML = textoOriginal;
+                    boton.style.backgroundColor = "#660000"; // Vuelve a tu color borravino original
+                    boton.disabled = false;
+                }, 1200);
+
+                // ========================================================
+                // CREAR ENLACE "VER CARRITO" DEBAJO SUBRAYADO
+                // ========================================================
+                const contenedorTarjeta = boton.parentElement;
+                
+                // Verificamos si ya existe el enlace en este servicio para no duplicarlo
+                let enlaceVerCarrito = contenedorTarjeta.querySelector('.link-ver-carrito');
+
+                if (!enlaceVerCarrito) {
+                    enlaceVerCarrito = document.createElement('a');
+                    enlaceVerCarrito.textContent = "Ver carrito";
+                    
+                    // Apuntamos a la carpeta correcta de tu estructura
+                    enlaceVerCarrito.href = "../Carrito/Carrito.html"; 
+                    enlaceVerCarrito.className = "link-ver-carrito";
+                    
+                    // Estilos pequeños, alineados y elegantes
+                    enlaceVerCarrito.style.display = "block";
+                    enlaceVerCarrito.style.textAlign = "center";
+                    enlaceVerCarrito.style.marginTop = "10px";
+                    enlaceVerCarrito.style.fontSize = "13px";
+                    enlaceVerCarrito.style.textDecoration = "underline";
+                    enlaceVerCarrito.style.color = "#660000"; // Mismo color institucional tuyo
+                    enlaceVerCarrito.style.fontWeight = "500";
+                    enlaceVerCarrito.style.cursor = "pointer";
+                    enlaceVerCarrito.style.transition = "color 0.2s ease";
+
+                    // Efecto hover sutil al pasar el mouse por encima
+                    enlaceVerCarrito.addEventListener('mouseover', () => {
+                        enlaceVerCarrito.style.color = "#a12323"; 
+                    });
+                    enlaceVerCarrito.addEventListener('mouseout', () => {
+                        enlaceVerCarrito.style.color = "#660000";
+                    });
+
+                    // Lo insertamos abajo de todo dentro de la tarjeta del servicio
+                    contenedorTarjeta.appendChild(enlaceVerCarrito);
                 }
             }
         });
