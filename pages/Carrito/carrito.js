@@ -1,94 +1,162 @@
 document.addEventListener('DOMContentLoaded', () => {
-    cargarProductosCarrito();
-    configurarBotonesFinales();
-});
-
-// 1. Lee el LocalStorage y dibuja las filas de la tabla
-function cargarProductosCarrito() {
-    // Usamos exactamente la misma clave que configuramos en la página de servicios
-    const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
-    const tabla = document.querySelector('#tabla_carrito');
-    
-    if (!tabla) return; 
-    tabla.innerHTML = '';
-    let acumulado = 0;
-
-    if (carrito.length === 0) {
-        tabla.innerHTML = `
-            <tr>
-                <td colspan="6" style="text-align: center; padding: 40px; font-family: 'Poppins', sans-serif; color: #555;">
-                    No tienes servicios reservados en tu lista. Volvé a 
-                    <a href="../Servicios/servicios.html" style="color: #660000; font-weight: bold; text-decoration: underline;">Nuestros Servicios</a>.
-                </td>
-            </tr>`;
-    } else {
-        carrito.forEach(producto => {
-            acumulado += producto.price * producto.cantidad;
-            tabla.innerHTML += `
-                <tr style="font-family: 'Poppins', sans-serif; border-bottom: 1px solid #ddd; text-align: center;">
-                    <td style="padding: 15px;">
-                        <button class="remove-btn" data-id="${producto.id}" style="background: none; border: none; color: #660000; cursor: pointer; font-size: 16px; font-weight: bold;">✕</button>
-                    </td>
-                    <td style="padding: 15px;">
-                        <img src="${producto.image}" alt="${producto.title}" style="height: 50px; width: 50px; object-fit: cover; border-radius: 8px;" onerror="this.src='https://placehold.co/50x50?text=Tarot'">
-                    </td>
-                    <td style="padding: 15px; font-weight: bold; text-align: left;">${producto.title}</td>
-                    <td style="padding: 15px;">$${producto.price.toLocaleString('es-AR')}</td>
-                    <td style="padding: 15px;">
-                        <input type="number" value="${producto.cantidad}" min="1" class="cantidad-producto" data-id="${producto.id}" style="width: 50px; padding: 5px; text-align: center; border: 1px solid #ccc; border-radius: 4px;">
-                    </td>
-                    <td style="padding: 15px; font-weight: bold;">$${(producto.price * producto.cantidad).toLocaleString('es-AR')}</td>
-                </tr>
-            `;
-        });
-    }
-
-    const totalTxt = document.getElementById('total_general');
-    if (totalTxt) {
-        totalTxt.textContent = `$${acumulado.toLocaleString('es-AR')}`;
-    }
-    
-    adjuntarEventosFila();
-}
-
-// 2. Controladores para cambiar cantidades o quitar un servicio individual
-function adjuntarEventosFila() {
-    document.querySelectorAll('.remove-btn').forEach(boton => {
-        boton.addEventListener('click', () => {
-            let carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
-            carrito = carrito.filter(item => String(item.id) !== String(boton.dataset.id));
-            localStorage.setItem('carritoDeCompras', JSON.stringify(carrito));
-            cargarProductosCarrito();
-            mostrarToast('🔮 Servicio removido de tu lista.');
-        });
-    });
-
-    document.querySelectorAll('.cantidad-producto').forEach(input => {
-        input.addEventListener('change', () => {
-            let carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
-            const nuevaCantidad = parseInt(input.value);
-            if (nuevaCantidad < 1) return;
-
-            const producto = carrito.find(item => String(item.id) === String(input.dataset.id));
-            if (producto) {
-                producto.cantidad = nuevaCantidad;
-                localStorage.setItem('carritoDeCompras', JSON.stringify(carrito));
-                cargarProductosCarrito(); // Recalcula totales automáticamente
-            }
-        });
-    });
-}
-
-// 3. Lógica para vaciar y confirmar (Requisito Clase 15 sin alert nativo)
-function configurarBotonesFinales() {
+    const tablaCarrito = document.getElementById('tabla_carrito');
+    const totalGeneral = document.getElementById('total_general');
     const btnVaciar = document.getElementById('btn-vaciar');
     const btnFinalizar = document.getElementById('btn-finalizar');
+    const contadorCarrito = document.getElementById('contador-carrito');
+    
+    const toast = document.getElementById('toast');
+    const toastMensaje = document.getElementById('toastMensaje');
+    const btnCerrarToast = document.getElementById('btnCerrarToast');
+
+    function mostrarToast(mensaje) {
+        if (toast && toastMensaje) {
+            toastMensaje.textContent = mensaje;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 4000);
+        }
+    }
+
+    if (btnCerrarToast) {
+        btnCerrarToast.addEventListener('click', () => { toast.style.display = 'none'; });
+    }
+
+    function actualizarContadorNav(carrito) {
+        if (contadorCarrito) {
+            const totalItems = carrito.reduce((acc, prod) => acc + (parseInt(prod.cantidad) || 1), 0);
+            contadorCarrito.textContent = totalItems;
+        }
+    }
+
+    function cargarProductosCarrito() {
+        const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+        actualizarContadorNav(carrito);
+
+        if (!tablaCarrito) return;
+        tablaCarrito.innerHTML = '';
+
+        if (carrito.length === 0) {
+            tablaCarrito.innerHTML = `
+                <tr>
+                    <td colspan="6" style="padding: 40px; color: #777; font-size: 16px;">
+                        🔮 Tu carrito está vacío. ¡Visita la sección de Servicios para añadir uno!
+                    </td>
+                </tr>
+            `;
+            if (totalGeneral) totalGeneral.textContent = '$0';
+            return;
+        }
+
+        let totalAcumulado = 0;
+
+        carrito.forEach((producto, index) => {
+            const nombreServicio = producto.titulo || producto.nombre || producto.title || producto.name || 'Servicio Personalizado';
+            
+            let precioBruto = producto.precio || producto.price || 0;
+            if (typeof precioBruto === 'string') {
+                precioBruto = precioBruto.replace(/[^0-9.,]/g, '').replace('.', '').replace(',', '.');
+            }
+            const precio = parseFloat(precioBruto) || 0;
+            
+            const cantidad = parseInt(producto.cantidad) || 1;
+            const subtotal = precio * cantidad;
+            totalAcumulado += subtotal;
+
+            // --- ASIGNACIÓN CON EXTENSIONES REALES COMPROBADAS ---
+            let rutaFinalImagen = '../../img/Logo%20Blanco.png'; 
+            const nombreLimpio = nombreServicio.trim().toLowerCase();
+
+            if (nombreLimpio.includes('amor')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de Amor.jpg';
+            } else if (nombreLimpio.includes('dinero')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de Dinero.jpg';
+            } else if (nombreLimpio.includes('completa')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura Completa.png';
+            } else if (nombreLimpio.includes('decisiones')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de las Decisiones.jpg';
+            } else if (nombreLimpio.includes('ex')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de mi Ex.jpg';
+            } else if (nombreLimpio.includes('proyectos')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de Proyectos y Trabajo.jpg';
+            } else if (nombreLimpio.includes('tres')) {
+                rutaFinalImagen = '../../img/sevicios/Lectura de Tres Preguntas.jpg';
+            } else if (nombreLimpio.includes('limpieza de energía')) {
+                rutaFinalImagen = '../../img/sevicios/Limpieza de Energía del Dinero.jpg';
+            } else if (nombreLimpio.includes('limpieza energética')) {
+                rutaFinalImagen = '../../img/sevicios/Limpieza Energética.jpg';
+            } else if (nombreLimpio.includes('constelaciones')) {
+                rutaFinalImagen = '../../img/sevicios/Constelaciones Familiares con Tarot.jpg';
+            }
+
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>
+                    <button class="btn-remover" data-index="${index}">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </td>
+                <td>
+                    <img src="${rutaFinalImagen}" alt="${nombreServicio}" class="img-producto-carrito" onerror="this.src='../../img/Logo%20Blanco.png';">
+                </td>
+                <td class="nombre-servicio-td">
+                    ${nombreServicio}
+                </td>
+                <td>
+                    $${precio.toLocaleString('es-AR')}
+                </td>
+                <td>
+                    <input type="number" class="input-cantidad" min="1" value="${cantidad}" data-index="${index}">
+                </td>
+                <td class="subtotal-celda">
+                    $${subtotal.toLocaleString('es-AR')}
+                </td>
+            `;
+            tablaCarrito.appendChild(fila);
+        });
+
+        if (totalGeneral) {
+            totalGeneral.textContent = `$${totalAcumulado.toLocaleString('es-AR')}`;
+        }
+
+        asignarEventosAcciones();
+    }
+
+    function asignarEventosAcciones() {
+        const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+
+        const inputsCantidad = document.querySelectorAll('.input-cantidad');
+        inputsCantidad.forEach(input => {
+            input.addEventListener('change', (e) => {
+                const idx = e.target.getAttribute('data-index');
+                let nuevaCantidad = parseInt(e.target.value);
+                
+                if (nuevaCantidad < 1 || isNaN(nuevaCantidad)) nuevaCantidad = 1;
+                
+                carrito[idx].cantidad = nuevaCantidad;
+                localStorage.setItem('carritoDeCompras', JSON.stringify(carrito));
+                cargarProductosCarrito();
+            });
+        });
+
+        const botonesRemover = document.querySelectorAll('.btn-remover');
+        botonesRemover.forEach(boton => {
+            boton.addEventListener('click', (e) => {
+                const idx = e.currentTarget.getAttribute('data-index');
+                carrito.splice(idx, 1);
+                localStorage.setItem('carritoDeCompras', JSON.stringify(carrito));
+                mostrarToast('Producto eliminado.');
+                cargarProductosCarrito();
+            });
+        });
+    }
 
     if (btnVaciar) {
         btnVaciar.addEventListener('click', () => {
+            const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+            if (carrito.length === 0) return;
             localStorage.removeItem('carritoDeCompras');
+            mostrarToast('Se ha vaciado el carrito.');
             cargarProductosCarrito();
-            mostrarToast('🗑️ Carrito vaciado por completo.');
         });
     }
 
@@ -99,32 +167,11 @@ function configurarBotonesFinales() {
                 mostrarToast('El carrito está vacío.');
                 return;
             }
-            mostrarToast('🔮 ¡Reserva Confirmada! Nos comunicaremos para coordinar tu turno.');
-            localStorage.removeItem('carritoDeCompras');
-            setTimeout(cargarProductosCarrito, 1500); // Limpia la pantalla después del aviso
+            mostrarToast('🔮 Redirigiendo a la plataforma de pago...');
+            const urlDeTuPlataformaDePago = "https://www.mercadopago.com.ar/... (TU_LINK_AQUÍ)";
+            setTimeout(() => { window.open(urlDeTuPlataformaDePago, '_blank'); }, 1500);
         });
     }
 
-    // Configuración para cerrar el Toast manualmente con la equis
-    const btnCerrar = document.getElementById('btnCerrarToast');
-    if (btnCerrar) {
-        btnCerrar.addEventListener('click', ocultarToast);
-    }
-}
-
-// 4. Funciones internas para el manejo del cartelito emergente (Toast)
-function mostrarToast(mensaje) {
-    const toast = document.getElementById('toast');
-    const toastMensaje = document.getElementById('toastMensaje');
-    
-    if (toast && toastMensaje) {
-        toastMensaje.textContent = mensaje;
-        toast.style.display = 'block';
-        setTimeout(ocultarToast, 4000); // Se esconde solo a los 4 segundos
-    }
-}
-
-function ocultarToast() {
-    const toast = document.getElementById('toast');
-    if (toast) toast.style.display = 'none';
-}
+    cargarProductosCarrito();
+});

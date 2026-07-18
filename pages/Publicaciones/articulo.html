@@ -19,27 +19,50 @@
 </head>
 <body>
 
-    <!-- MENÚ DE NAVEGACIÓN (HEADER) -->
+    <!-- MENÚ DE NAVEGACIÓN (HEADER) UNIFICADO -->
     <header style="position: sticky; top: 0; z-index: 10000;">
-        <nav class="introduccion">
-            <a href="../../Index.html">
+        <nav class="introduccion" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 5%; position: relative; min-height: 80px;">
+            
+            <!-- Logo a la izquierda -->
+            <a href="../../index.html" style="display: flex; align-items: center; z-index: 2;">
                 <img src="../../img/Logo%20Blanco.png" alt="Logo Principal" class="logo-img">
             </a>
-            <div>
-                <ul>
-                    <li><a href="../../Index.html">Inicio</a></li>
-                    <li><a href="../Servicios/servicios.html">Servicios</a></li>
-                    <li><a href="../Cursos/cursos.html">Cursos</a></li>
-                    <li><a href="publicaciones.html" class="active">Publicaciones</a></li>
-                    <li><a href="../Meditaciones/meditaciones.html">Meditaciones</a></li>
-                    <li><a href="../Contacto/contacto.html">Contacto</a></li>
-                    <li>
-                        <a href="../Carrito/Carrito.html" style="position: relative; display: inline-block; padding: 5px;">
-                            <i class="fa-solid fa-cart-arrow-down" style="font-size: 18px; color: white;"></i>
-                            <span id="contador-carrito" style="position: absolute; top: -5px; right: -8px; background-color: #d4af37; color: #1a1a1a; border: 2px solid rgb(102, 0, 0); border-radius: 50%; font-size: 11px; font-weight: bold; min-width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-family: 'Poppins', sans-serif;">0</span>
-                        </a>
-                    </li>
+
+            <!-- ENLACES CON EL ESPACIADO DE REFERENCIA Y DISEÑO TOTALMENTE CENTRADO -->
+            <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; width: auto; max-width: 70%;">
+                <ul style="display: flex !important; list-style: none !important; margin: 0 !important; padding: 0 !important; align-items: center !important; justify-content: center !important; gap: 60px !important; white-space: nowrap !important;">
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="../../index.html" style="font-family: 'Poppins', sans-serif;">Inicio</a></li>
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="../Servicios/servicios.html" style="font-family: 'Poppins', sans-serif;">Servicios</a></li>
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="../Cursos/cursos.html" style="font-family: 'Poppins', sans-serif;">Cursos</a></li>
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="publicaciones.html" class="active" style="font-family: 'Poppins', sans-serif;">Publicaciones</a></li>
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="../Meditaciones/meditaciones.html" style="font-family: 'Poppins', sans-serif;">Meditaciones</a></li>
+                    <li style="margin: 0 !important; padding: 0 !important; display: inline-block !important;"><a href="../Contacto/contacto.html" style="font-family: 'Poppins', sans-serif;">Contacto</a></li>
                 </ul>
+            </div>
+
+            <!-- Carrito a la derecha con el contador unificado corregido a minúsculas -->
+            <div style="display: flex; align-items: center; justify-content: flex-end; z-index: 2;">
+                <a href="../carrito/carrito.html" style="position: relative; display: inline-block; padding: 5px;">
+                    <i class="fa-solid fa-cart-arrow-down" style="font-size: 18px; color: white;"></i>
+                    <span id="contador-carrito" style="
+                        position: absolute; 
+                        top: -5px; 
+                        right: -12px; 
+                        background-color: #d4af37; 
+                        color: #1a1a1a; 
+                        border: 2px solid #660000; 
+                        border-radius: 50%; 
+                        font-size: 11px; 
+                        font-weight: bold; 
+                        min-width: 18px; 
+                        height: 18px; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        font-family: 'Poppins', sans-serif;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    ">0</span>
+                </a>
             </div>
         </nav>
     </header>
@@ -62,7 +85,7 @@
                 <p>Una de las herramientas más poderosas y sencillas para liberar esas cargas emocionales es el <strong>Ho'oponopono</strong>, una práctica ancestral hawaiana que se basa en la reconciliación, el perdón y la limpieza energética.</p>
 
                 <h3>¿Qué es el Ho'oponopono?</h3>
-                <p>El término «Ho'oponopono» significa «corregir un error» o «hacer lo correcto». Su esencia radica en la idea de que somos responsables de nuestra realidad, ya que nuestras experiencias externas son el reflejo de nuestros pensamientos, emociones y memorias inconscientes.</p>
+                <p>El término «Ho'oponopono» significa «corregir un error» o «hacer lo correcto». Su esencia radica en la idea de que somos responsables de nuestra reality, ya que nuestras experiencias externas son el reflejo de nuestros pensamientos, emociones y memorias inconscientes.</p>
                 
                 <p>Esta técnica sostiene que, al limpiar nuestras memorias dolorosas, no solo sanamos nuestra propia vida, sino que también contribuimos a la armonía colectiva.</p>
 
@@ -144,7 +167,7 @@
         </article>
     </main>
 
-    <!-- PIE DE PÁGINA (FOOTER) -->
+    <!-- PIE DE PÁGINA (FOOTER) CON ENLACES REALES -->
     <footer class="footer-sitio">
         <div class="footer-contenido">
             <div class="footer-logo-bloque">
@@ -154,10 +177,10 @@
             <div class="footer-redes-bloque">
                 <h4>Conectemos</h4>
                 <div class="redes-iconos">
-                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="#" target="_blank" class="wp-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/belizatarotycoaching" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/belizatarotycoaching" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@belizatarotycoaching" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://youtube.com/@belizatarotycoaching" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -165,5 +188,21 @@
             <p>&copy; 2026 Beliza Castillo. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- SCRIPT DE INICIALIZACIÓN DEL CARRITO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const contador = document.getElementById('contador-carrito');
+            if (contador) {
+                const carrito = JSON.parse(localStorage.getItem('carritoDeCompras')) || [];
+                contador.textContent = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
+            }
+        });
+    </script>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/message/7WMNZH5BEQ45K1" class="whatsapp-float" target="_blank" aria-label="WhatsApp Flotante">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 </body>
 </html>
