@@ -339,9 +339,9 @@ ul li a:hover {
         order: 2; /* Lo acomoda en el centro/derecha */
     }
 
-    /* Ocultamos y convertimos el ul en desplegable vertical */
-    ul {
-        display: block !important; /* Cambia de flex a bloque vertical */
+    /* Ocultamos y convertimos el ul (.nav-menu) en desplegable vertical */
+    ul.nav-menu {
+        display: block !important; 
         position: absolute !important;
         top: 100% !important; /* Despliega justo debajo de la barra roja */
         left: 0 !important;
@@ -350,36 +350,36 @@ ul li a:hover {
         margin-right: 0 !important;        
         margin-top: 0 !important;
         max-height: 0 !important; /* Escondido por defecto */
-        overflow: hidden !important; /* Evita que las letras se escapen */
+        overflow: hidden !important; 
         transition: max-height 0.3s ease-in-out !important;
         z-index: 1000 !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    li {
-        margin-left: 0 !important; /* Resetea el espaciado horizontal de PC */
+    ul.nav-menu li {
+        margin-left: 0 !important; /* Resetea el espaciado de PC */
         text-align: center !important;
     }
     
-    ul li:last-child {
+    ul.nav-menu li:last-child {
         margin-left: 0 !important;
         margin-top: 0 !important;
     }
 
-    ul li a {
+    ul.nav-menu li a {
         display: block !important;
         padding: 15px 0 !important;
         font-size: 18px !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
-    /* TRUCO MÁGICO: Cuando se toca la hamburguesa, despliega el menú vertical sin pisar nada */
-    #menu-hamburguesa-check:checked ~ ul {
+    /* CUANDO SE TOCA LA HAMBURGUESA: Despliega el menú .nav-menu */
+    #menu-hamburguesa-check:checked ~ ul.nav-menu {
         max-height: 300px !important; 
     }
 
-    /* Evitamos que los divs del header estorben */
-    .introduccion div {
+    /* Evitamos que el div del carrito estorbe */
+    .introduccion .carrito-contenedor {
         margin-right: 0 !important;
         order: 3; /* Envía el carrito al extremo derecho */
     }
@@ -524,4 +524,63 @@ ul li a:hover {
 .whatsapp-float:hover {
     transform: scale(1.1);
     background-color: #128c7e;
+}
+/* Corrección de simetría para el menú en escritorio */
+@media (min-width: 769px) {
+    .nav-menu {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 60px !important; 
+    }
+}
+
+/* --- ESTILOS DEL HEADER Y MENÚ --- */
+.introduccion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5%;
+    background-color: #660000; /* Asegurá que tenga el color de fondo */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Header y Menú - Distribución Simétrica */
+.introduccion {
+    background-color: #660000;
+    display: flex;
+    justify-content: space-between; /* Logo a la izquierda, Menú al centro/derecha, Carrito al final */
+    align-items: center;
+    padding: 10px 50px;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+}
+
+/* El contenedor del menú se centra y distribuye sus elementos */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 40px; /* Ajustá este valor para dar más o menos aire entre todos los items */
+    margin: 0 auto; /* Centra el bloque del menú */
+    padding: 0;
+}
+
+/* Eliminamos cualquier margen extraño de los elementos individuales */
+.nav-menu li {
+    margin: 0 !important; 
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #ffcc00;
 }
